@@ -1,0 +1,31 @@
+{{ if .IsNamedParams }}
+<div class="action-buttons">
+<a class="button button-medium" href="{{ $.Page.Params.paybuttonlink }}" target="_blank" style="background-color: {{ .Get "color"}};">
+        {{ .Get "text" }}
+</a>
+</div>
+<style>
+    .action-buttons {
+    font-family: Roboto,sans-serif;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.button-medium {
+    font-weight: 700;
+}
+
+    .button {
+        border: 0;
+        text-align: center;
+        display: inline-block;
+        padding: .5em 2em;
+        margin: .21em;
+        color: #fff!important;
+        border-radius: 8px;
+        text-decoration: none!important;
+        transition: box-shadow .2s ease-out;
+    }
+</style>
+{{ end }}
