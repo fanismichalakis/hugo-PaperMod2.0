@@ -1,9 +1,19 @@
 {{ if .IsNamedParams }}
+{{ if .Get "link" }}
+{{ if hasPrefix (.Get "link") "lightning" }}
 <div class="action-buttons">
-<a class="button button-medium" href="{{ $.Page.Params.paybuttonlink }}" target="_blank" style="background-color: {{ .Get "color"}};">
+    <a class="button button-medium" href="{{ .Get "link" | safeURL }}" target="_blank" rel="external" style="background-color: {{ .Get "color"}};">
         {{ .Get "text" }}
-</a>
+    </a>
 </div>
+{{end}}
+{{else}}
+<div class="action-buttons">
+    <a class="button button-medium" href="{{ $.Page.Params.paybuttonlink }}" target="_blank" style="background-color: {{ .Get "color"}};">
+        {{ .Get "text" }}
+    </a>
+</div>
+{{end}}
 <style>
     .action-buttons {
     font-family: Roboto,sans-serif;

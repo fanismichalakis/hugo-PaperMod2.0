@@ -1,7 +1,15 @@
 {{- $scratch := newScratch }}
 
 {{- if not .Date.IsZero -}}
+{{- if eq .Date "latest" -}}
+{{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" ("2022-02-17T08:00:00+01:00") ("2022-02-17T08:00:00+01:00" | time.Format (default "January 2, 2006" .Site.Params.DateFormat)))) }}
+{{- else }}
 {{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default "January 2, 2006" .Site.Params.DateFormat)))) }}
+{{- end }}
+{{- end }}
+
+{{ if (.Params.block) -}}
+{{- $scratch.Add "meta" (slice .Params.block) }}
 {{- end }}
 
 {{- if (.Param "ShowReadingTime") -}}
